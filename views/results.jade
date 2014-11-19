@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  section
+    h1 Registration Results
+  section
+    table
+      thead
+        tr
+          th First Name
+          th Last Name
+          th Email
+          th Phone #
+          th First Class
+          th Time
+          th Block Missed
+      tbody
+        - each item in rows
+          tr
+            td= item.first
+            td= item.last
+            td= item.email
+            td= item.phone
+            td= item.firstClass
+            td= item.time
+            td= item.blockMissed

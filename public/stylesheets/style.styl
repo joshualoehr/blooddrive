@@ -1,0 +1,138 @@
+
+@import url(http://fonts.googleapis.com/css?family=Dosis:400,700);
+
+/* KOUTO-SWISS */
+/*
+@import 'node_modules/kouto-swiss'
+
+normalize();
+
+body
+  gs("fluid")
+  section
+    gs("fluid")
+*/
+
+/* JEET */
+@import 'jeet'
+
+breakpoint = 875px
+
+body
+  font-family 'Dosis', sans-serif
+
+
+
+h1
+  #WWHS
+    color #000
+  font-size 6rem
+  +tablet()
+    font-size 9vw
+  margin 0
+  a
+    color #fff
+
+#submit
+select
+label
+p
+  font-size 2rem
+  +tablet()
+    font-size 5vw
+section
+  margin 0
+  padding 0
+
+#reminders
+  +tablet()
+    padding 15px
+  center(815px)
+  p
+    col(1/2, cycle: 2)
+    +tablet()
+      stack()
+      margin-top 0
+    text-align left
+
+#info
+  center(815px)
+  p
+    text-align left
+
+/* NIB */
+@import 'nib'
+
+
+
+/* CONSTANTS */
+blood_red = #e70506
+
+a
+  text-decoration none
+
+section
+  text-align center
+  h1
+    margin 0
+#section_date
+  h1
+    text-align right
+#section_title
+#section_info
+  background #FFF
+  h1
+    color blood_red
+#section_reminders
+#section_back
+  background #000
+  color #FFF
+  h1
+    a
+      &:hover
+        color blood_red
+#section_signup_link
+#section_signup
+  background blood_red
+  color #FFF
+  label,
+  h1
+    a
+      color #000
+      &:hover
+        color #fff
+  #fill
+    center(815px)
+    .input_label
+      text-align left
+      select
+        font-family 'Dosis', sans-serif
+        padding-left 15px
+        padding-right 15px
+        padding-top 5px
+        padding-bottom 5px
+      #time
+        display inline
+        col(1/2)
+      #blockMissed
+        display inline
+        col(1/2)
+      input
+        width 100%
+        padding 15px
+  #check
+    center(815px)
+    .input_label
+      text-align left
+    #submit
+      font-family 'Dosis', sans-serif
+      font-weight bold
+      padding 15px
+      margin 15px
+      border 5px solid blood_red
+      background white
+      color blood_red
+      &:hover
+        border 5px solid white
+        background blood_red
+        color white

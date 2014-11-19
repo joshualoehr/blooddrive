@@ -1,0 +1,151 @@
+extends layout
+
+block content
+  section#section_date
+    h1 1.23.2014
+  section#section_title
+    h1 <span id="WWHS">WWHS</span> BLOOD DRIVE
+  section#section_signup_link
+    h1
+      a(href="#section_signup") SIGN UP
+  section#section_reminders
+    h1 REMINDERS
+    div#reminders
+      p.
+        Eat a healthy breakfast and drink plenty of water before donating
+      p.
+        Bring a photo ID with proof of birth date (e.g. driver's license)
+      p.
+        Get a good night's sleep
+      p.
+        Must be over 17 years old and 115 lbs to donate
+  section#section_info
+    h1 WHY DONATE?
+    div#info
+      p.
+        It's simple. Giving blood is one of the easiest ways to help people in need.
+        With your donation you can save a life and contribute to your community - all
+        without spending a dime!
+      p.
+        We give because a loved one might need blood someday.
+      p.
+        We give because we were asked to by a friend.
+      p.
+        We give because it's going to help others.
+      p.
+        Whatever your reason, your contribution is vital for a healthy and reliable
+        blood supply.
+      h1 EVENT INFO
+      p
+        | WHO - You and your fellow community lifesavers<br>
+        | WHAT - Westwood High School Blood Drive<br>
+        | WHEN - January 23rd, 2014 (White Day)<br>
+        | WHERE -&nbsp;
+        a(href="goo.gl/maps/4EDvl") Westwood High School&nbsp;
+        | (in the Athletic Foyer)<br>
+        | WHY - Who doesn't want to save a life?<br>
+
+      h1 FAQ
+      p
+        | Q: Am I eligible?<br>
+        | A: You must be at least 17 years old and wigh over 115 lbs to donate.&nbsp;
+        a(href="www.inyourhands.org/whocandonate.php") Check here
+        | , though, to make sure you meet all of the guidelines.
+      p
+        | Q: Can my parents or other adults come?<br>
+        | A: Of course! Adults do ot need to sign up in advance. Anyone
+        | over the age of 18 that meets the&nbsp;
+        a(href="www.inyourhands.org/whocandonate.php") eligibility requirements&nbsp;
+        | can donate. Once they're checked in, adults will be put at the front
+        | of the line.
+      p
+        | Q: Where do I go to donate?<br>
+        | A: Donations will be held at&nbsp;
+        a(href="goo.gl/maps/4EDvl") Westwood High School
+        | , in the athletic foyer behind the large gym. Still confused? Don't worry
+        | - there will be signs throughout the school to help you get there.
+      p
+        | Q: Do I get a pass for my class?<br>
+        | A: Yes, you'll be given a pass during your 5th block class. If you
+        | have 5th block off-campus, you can come to the athletic foyer before
+        | 6th block to get your pass there.
+      p
+        a(href="www.inyourhands.org/assetmanager/assets/FAQ%20ENG.pdf") MORE FAQS
+  section#section_signup
+    h1 SIGN UP
+    div#signup
+      form(action="/blooddrive/addUser", method="POST")
+        div#fill
+          div.input_label#first
+            label(for="first") First Name<br>
+            input(type="text", name="first", maxlength="50", required)
+            <br>
+          div.input_label#last
+            label(for="last") Last Name<br>
+            input(type="text", name="last", maxlength="50", required)
+            <br>
+          div.input_label#email
+            label(for="email") Email<br>
+            input(type="text", name="email", maxlength="50", required)
+            <br>
+          div.input_label#phone
+            label(for="phone") Cell Phone # (Recommended)<br>
+            input(type="text", name="phone", maxlength="20")
+            <br>
+          div.input_label#firstClass
+            label(for="firstClass") 5th Block Class & Teacher<br>
+            input(type="text", name="firstClass", maxlength="50", required)
+            <br>
+          div.input_label#time
+            label(for="time") Donation Time<br>
+            - var hr = 9;
+            - var min = 0;
+            select(name="time", required)
+              option(value, selected)
+              while (hr >= 9 && hr <= 12) || (hr <= 4)
+                - min = 0;
+                while !(hr == 4 && min > 0) && min <= 45
+                  - var str = hr + ":" + ((min == 0) ? "00" : min) + ((hr == 12 || hr <= 4) ? " PM" : " AM");
+                  - min += 15;
+                  option(value=str)= str
+                if hr < 12
+                  - hr++;
+                else
+                  - hr = 1;
+          div.input_label#blockMissed
+            label(for="blockMissed") Block You'll Miss<br>
+            select(name="blockMissed", required)
+              option(value, selected)
+              - var blocks = ["1st", "2nd", "3rd", "4th"];
+              each val in blocks
+                option(value=val)= val
+            <br>
+        p I agree to the following terms and conditions:
+        div#check
+          div.input_label#age
+            input(type="checkbox", name="age", required)
+            label(for="age") I am at least 17 years of age.<br>
+          div.input_label#weight
+            input(type="checkbox", name="weight", required)
+            label(for="weight") I weigh at least 115 lbs.<br>
+          div.input_label#teachers
+            input(type="checkbox", name="teachers", required)
+            label(for="teachers") I am not donating during a class taught by these teachers:<br>
+          div.input_label#eligible
+            input(type="checkbox", name="eligible", required)
+            label(for="eligible") I meet all of the <a href="www.inyourhands.org/whocandonate.php">eligibility requirements</a>.<br>
+          div.input_label#class
+            input(type="checkbox", name="class", required)
+            label(for="class") I will return to class after the donation.<br>
+          div.input_label#length
+            input(type="checkbox", name="length", required)
+            label(for="length") I understand that the donation process could take 90 minutes or longer.<br>
+          div.input_label#permission
+            input(type="checkbox", name="permission", required)
+            label(for="permission") I have already obtained permission from the teacher(s) whose class I will miss.<br>
+
+          input(type="submit", id="submit", value="SUBMIT")
+
+  section#section_back
+    h1
+        a(href="#section_title") BACK TO TOP
